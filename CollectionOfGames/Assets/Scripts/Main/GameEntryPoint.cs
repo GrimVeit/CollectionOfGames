@@ -34,38 +34,9 @@ public class GameEntryPoint
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
-    private void Run()
+    private void Run()  
     {
-        coroutines.StartCoroutine(LoadAndStartCountryChecker());
-    }
-
-    private IEnumerator LoadAndStartCountryChecker()
-    {
-        yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.CHECKER);
-
-        yield return new WaitForEndOfFrame();
-
-        var sceneEntryPoint = Object.FindObjectOfType<CountryCheckerSceneEntryPoint>();
-
-        sceneEntryPoint.GoToOther += () => coroutines.StartCoroutine(LoadAndStartOther());
-        sceneEntryPoint.GoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
-
-        sceneEntryPoint.Run(rootView);
-    }
-
-    private IEnumerator LoadAndStartOther()
-    {
-        yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.OTHER);
-
-        yield return new WaitForEndOfFrame();
-
-        var sceneEntryPoint = Object.FindObjectOfType<OtherSceneEntryPoint>();
-
-        sceneEntryPoint.OnGoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
-
-        sceneEntryPoint.Run(rootView);
+        coroutines.StartCoroutine(LoadAndStartMainMenu());
     }
 
     private IEnumerator LoadAndStartMainMenu()
