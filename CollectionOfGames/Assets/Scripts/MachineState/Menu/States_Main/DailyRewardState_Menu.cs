@@ -17,14 +17,14 @@ public class DailyRewardState_Menu : IState
     {
         Debug.Log("<color=red>ACTIVATE STATE - DAILY REWARD STATE / MENU</color>");
 
-        _sceneRoot.OnClickToBack_DailyReward += ChangeStateToMain;
+        //_sceneRoot.OnClickToBack_DailyReward += ChangeStateToMain;
 
-        _sceneRoot.OpenDailyRewardPanel();
+        //_sceneRoot.OpenDailyRewardPanel();
     }
 
     public void ExitState()
     {
-        _sceneRoot.OnClickToBack_DailyReward -= ChangeStateToMain;
+        //_sceneRoot.OnClickToBack_DailyReward -= ChangeStateToMain;
     }
 
     private void ChangeStateToMain()

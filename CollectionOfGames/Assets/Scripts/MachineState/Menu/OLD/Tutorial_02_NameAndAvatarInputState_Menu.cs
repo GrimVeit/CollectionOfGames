@@ -30,12 +30,12 @@ public class Tutorial_02_NameAndAvatarInputState_Menu : IState
         _nicknamePresenter.OnChooseNickname += _firebaseDatabasePresenter.SetNickname;
         _avatarPresenter.OnChooseAvatar += _firebaseDatabasePresenter.SetAvatar;
 
-        _sceneRoot.OnClickToSave_AvatarNickname += ChangeStateToRegistration;
+        _sceneRoot.OnClickToRegistrate_Registration += ChangeStateToRegistration;
 
         _dialoguePresenter.Next();
 
-        _sceneRoot.OpenAvatarNicknamePanel();
-        _sceneRoot.OpenSaveAvatarDataPanel();
+        _sceneRoot.OpenNicknamePanel();
+        _sceneRoot.OpenRegistrationPanel();
     }
 
     public void ExitState()
@@ -44,10 +44,10 @@ public class Tutorial_02_NameAndAvatarInputState_Menu : IState
         _nicknamePresenter.OnChooseNickname -= _firebaseDatabasePresenter.SetNickname;
         _avatarPresenter.OnChooseAvatar -= _firebaseDatabasePresenter.SetAvatar;
 
-        _sceneRoot.OnClickToSave_AvatarNickname -= ChangeStateToRegistration;
+        _sceneRoot.OnClickToRegistrate_Registration -= ChangeStateToRegistration;
 
-        _sceneRoot.CloseAvatarNicknamePanel();
-        _sceneRoot.CloseSaveAvatarDataPanel();
+        _sceneRoot.CloseNicknamePanel();
+        _sceneRoot.CloseRegistrationPanel();
     }
 
     private void ChangeStateToRegistration()

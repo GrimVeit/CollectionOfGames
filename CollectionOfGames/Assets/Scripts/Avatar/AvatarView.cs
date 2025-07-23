@@ -4,12 +4,14 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class AvatarView : View
 {
-    [SerializeField] private List<AvatarVisual> avatarVisuals = new List<AvatarVisual>();
-    [SerializeField] private List<Image> imageAvatars = new List<Image>();
+    [SerializeField] private List<AvatarVisual> avatarVisuals = new();
+    [SerializeField] private List<Image> imageAvatars = new();
     [SerializeField] private SpriteAvatars spriteAvatars;
+    [SerializeField] private Transform transformFrame;
 
     public void Initialize()
     {
@@ -33,15 +35,7 @@ public class AvatarView : View
 
     public void Select(int id)
     {
-        var visual = GetAvatarVisualByid(id);
-
-        if(visual == null)
-        {
-            Debug.LogWarning("Not found avatar visual by id - " + id);
-            return;
-        }
-
-        visual.Select();
+        transformFrame.DOMove(avatarVisuals[id].TransformAvatar.position, 0.2f);
 
         var avatar = spriteAvatars.GetSpriteById(id);
 
@@ -53,15 +47,7 @@ public class AvatarView : View
 
     public void Deselect(int id)
     {
-        var visual = GetAvatarVisualByid(id);
 
-        if (visual == null)
-        {
-            Debug.LogWarning("Not found avatar visual by id - " + id);
-            return;
-        }
-
-        visual.Unselect();
     }
 
     #endregion

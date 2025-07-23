@@ -14,26 +14,28 @@ public class StateMachine_Menu : IGlobalStateMachineProvider
         NicknamePresenter nicknamePresenter,
         AvatarPresenter avatarPresenter,
         FirebaseAuthenticationPresenter firebaseAuthenticationPresenter,
-        FirebaseDatabasePresenter firebaseDatabasePresenter,
-        DialoguePresenter dialoguePresenter,
-        IHandPointerProvider handPointerProvider,
-        ITutorialProgressProvider_Read tutorialProgressProvider_Read,
-        ITutorialProgressProvider_Write tutorialProgressProvider_Write,
-        IGameProgressProvider_Write gameProgressProvider_Write)
+        FirebaseDatabasePresenter firebaseDatabasePresenter)
     {
-        states[typeof(CheckTutorialState_Menu)] = new CheckTutorialState_Menu(this, tutorialProgressProvider_Read);
-        states[typeof(Tutorial_01_IntroGreetingState_Menu)] = new Tutorial_01_IntroGreetingState_Menu(this, dialoguePresenter);
-        states[typeof(Tutorial_02_NameAndAvatarInputState_Menu)] = new Tutorial_02_NameAndAvatarInputState_Menu(this, dialoguePresenter, sceneRoot, nicknamePresenter, avatarPresenter, firebaseAuthenticationPresenter, firebaseDatabasePresenter);
+        //states[typeof(CheckTutorialState_Menu)] = new CheckTutorialState_Menu(this, tutorialProgressProvider_Read);
+        //states[typeof(Tutorial_01_IntroGreetingState_Menu)] = new Tutorial_01_IntroGreetingState_Menu(this, dialoguePresenter);
+        //states[typeof(Tutorial_02_NameAndAvatarInputState_Menu)] = new Tutorial_02_NameAndAvatarInputState_Menu(this, dialoguePresenter, sceneRoot, nicknamePresenter, avatarPresenter, firebaseAuthenticationPresenter, firebaseDatabasePresenter);
+        //states[typeof(RegistrationState_Menu)] = new RegistrationState_Menu(this, sceneRoot, firebaseAuthenticationPresenter, firebaseDatabasePresenter);
+        //states[typeof(Tutorial_02_RepeatNameAndAvatarInputState_Menu)] = new Tutorial_02_RepeatNameAndAvatarInputState_Menu(this, sceneRoot, nicknamePresenter, avatarPresenter, firebaseAuthenticationPresenter, firebaseDatabasePresenter);
+        //states[typeof(Tutorial_03_IntroConfirmationState_Menu)] = new Tutorial_03_IntroConfirmationState_Menu(this, dialoguePresenter, sceneRoot);
+        //states[typeof(Tutorial_04_ShowBalanceState_Menu)] = new Tutorial_04_ShowBalanceState_Menu(this, dialoguePresenter, sceneRoot, handPointerProvider);
+        //states[typeof(Tutorial_05_HighlightBonusBtnState_Menu)] = new Tutorial_05_HighlightBonusBtnState_Menu(this, dialoguePresenter, sceneRoot, handPointerProvider);
+        //states[typeof(Tutorial_06_DailyBonus1State_Menu)] = new Tutorial_06_DailyBonus1State_Menu(this, dialoguePresenter, sceneRoot, handPointerProvider);
+        //states[typeof(Tutorial_07_DailyBonus2State_Menu)] = new Tutorial_07_DailyBonus2State_Menu(this, dialoguePresenter, handPointerProvider);
+        //states[typeof(Tutorial_08_HighlightTasksBtnState_Menu)] = new Tutorial_08_HighlightTasksBtnState_Menu(this, dialoguePresenter, sceneRoot, handPointerProvider);
+        //states[typeof(Tutorial_09_DailyTasksState_Menu)] = new Tutorial_09_DailyTasksState_Menu(this, dialoguePresenter, sceneRoot);
+        //states[typeof(Tutorial_10_CompleteState_Menu)] = new Tutorial_10_CompleteState_Menu(this, dialoguePresenter, tutorialProgressProvider_Write, sceneRoot, gameProgressProvider_Write);
+
+
+        states[typeof(IntroState_Menu)] = new IntroState_Menu(this, sceneRoot);
+        states[typeof(CheckAuthorizationState_Menu)] = new CheckAuthorizationState_Menu(this, firebaseAuthenticationPresenter);
+
+        states[typeof(NameAndAvatarInputState_Menu)] = new NameAndAvatarInputState_Menu(this, sceneRoot, nicknamePresenter, avatarPresenter, firebaseAuthenticationPresenter, firebaseDatabasePresenter);
         states[typeof(RegistrationState_Menu)] = new RegistrationState_Menu(this, sceneRoot, firebaseAuthenticationPresenter, firebaseDatabasePresenter);
-        states[typeof(Tutorial_02_RepeatNameAndAvatarInputState_Menu)] = new Tutorial_02_RepeatNameAndAvatarInputState_Menu(this, sceneRoot, nicknamePresenter, avatarPresenter, firebaseAuthenticationPresenter, firebaseDatabasePresenter);
-        states[typeof(Tutorial_03_IntroConfirmationState_Menu)] = new Tutorial_03_IntroConfirmationState_Menu(this, dialoguePresenter, sceneRoot);
-        states[typeof(Tutorial_04_ShowBalanceState_Menu)] = new Tutorial_04_ShowBalanceState_Menu(this, dialoguePresenter, sceneRoot, handPointerProvider);
-        states[typeof(Tutorial_05_HighlightBonusBtnState_Menu)] = new Tutorial_05_HighlightBonusBtnState_Menu(this, dialoguePresenter, sceneRoot, handPointerProvider);
-        states[typeof(Tutorial_06_DailyBonus1State_Menu)] = new Tutorial_06_DailyBonus1State_Menu(this, dialoguePresenter, sceneRoot, handPointerProvider);
-        states[typeof(Tutorial_07_DailyBonus2State_Menu)] = new Tutorial_07_DailyBonus2State_Menu(this, dialoguePresenter, handPointerProvider);
-        states[typeof(Tutorial_08_HighlightTasksBtnState_Menu)] = new Tutorial_08_HighlightTasksBtnState_Menu(this, dialoguePresenter, sceneRoot, handPointerProvider);
-        states[typeof(Tutorial_09_DailyTasksState_Menu)] = new Tutorial_09_DailyTasksState_Menu(this, dialoguePresenter, sceneRoot);
-        states[typeof(Tutorial_10_CompleteState_Menu)] = new Tutorial_10_CompleteState_Menu(this, dialoguePresenter, tutorialProgressProvider_Write, sceneRoot, gameProgressProvider_Write);
 
 
         states[typeof(StartMainState_Menu)] = new StartMainState_Menu(this, firebaseDatabasePresenter, firebaseAuthenticationPresenter);
@@ -46,7 +48,7 @@ public class StateMachine_Menu : IGlobalStateMachineProvider
 
     public void Initialize()
     {
-        SetState(GetState<CheckTutorialState_Menu>());
+        SetState(GetState<IntroState_Menu>());
     }
 
     public void Dispose()

@@ -17,14 +17,14 @@ public class ChipStoreState_Menu : IState
     {
         Debug.Log("<color=red>ACTIVATE STATE - CHIP STORE STATE / MENU</color>");
 
-        _sceneRoot.OnClickToBack_Chips += ChangeStateToMain;
+        //_sceneRoot.OnClickToBack_Chips += ChangeStateToMain;
 
-        _sceneRoot.OpenChipsPanel();
+        //_sceneRoot.OpenChipsPanel();
     }
 
     public void ExitState()
     {
-        _sceneRoot.OnClickToBack_Chips -= ChangeStateToMain;
+        //_sceneRoot.OnClickToBack_Chips -= ChangeStateToMain;
     }
 
     private void ChangeStateToMain()

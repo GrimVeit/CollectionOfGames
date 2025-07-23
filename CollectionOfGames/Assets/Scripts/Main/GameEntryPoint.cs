@@ -48,16 +48,16 @@ public class GameEntryPoint
 
         yield return new WaitForEndOfFrame();
 
-        var sceneEntryPoint = Object.FindObjectOfType<MainMenuEntryPoint>();
+        var sceneEntryPoint = Object.FindObjectOfType<MenuEntryPoint>();
 
         sceneEntryPoint.Run(rootView);
 
-        sceneEntryPoint.OnGoToRoulette_Mini += () => coroutines.StartCoroutine(LoadAndStartGameScene_1_Mini());
-        sceneEntryPoint.OnGoToRoulette_Euro += () => coroutines.StartCoroutine(LoadAndStartGameScene_2_Euro());
-        sceneEntryPoint.OnGoToRoulette_America += () => coroutines.StartCoroutine(LoadAndStartGameScene_3_America());
-        sceneEntryPoint.OnGoToRoulette_AmericaMulti += () => coroutines.StartCoroutine(LoadAndStartGameScene_4_AmericaMulti());
-        sceneEntryPoint.OnGoToRoulette_French += () => coroutines.StartCoroutine(LoadAndStartGameScene_5_French());
-        sceneEntryPoint.OnGoToRoulette_AmericaTracker += () => coroutines.StartCoroutine(LoadAndStartGameScene_6_AmericaTracker());
+        //sceneEntryPoint.OnGoToRoulette_Mini += () => coroutines.StartCoroutine(LoadAndStartGameScene_1_Mini());
+        //sceneEntryPoint.OnGoToRoulette_Euro += () => coroutines.StartCoroutine(LoadAndStartGameScene_2_Euro());
+        //sceneEntryPoint.OnGoToRoulette_America += () => coroutines.StartCoroutine(LoadAndStartGameScene_3_America());
+        //sceneEntryPoint.OnGoToRoulette_AmericaMulti += () => coroutines.StartCoroutine(LoadAndStartGameScene_4_AmericaMulti());
+        //sceneEntryPoint.OnGoToRoulette_French += () => coroutines.StartCoroutine(LoadAndStartGameScene_5_French());
+        //sceneEntryPoint.OnGoToRoulette_AmericaTracker += () => coroutines.StartCoroutine(LoadAndStartGameScene_6_AmericaTracker());
 
         yield return rootView.HideLoadingScreen(0);
     }

@@ -21,7 +21,7 @@ public class Tutorial_08_HighlightTasksBtnState_Menu : IState
     {
         Debug.Log("<color=red>ACTIVATE STATE - TUTORIAL 05 STATE / MENU</color>");
 
-        _sceneRoot.OnClickToTasks_Main += ChangeStateTo_09;
+        //_sceneRoot.OnClickToTasks_Main += ChangeStateTo_09;
         _sceneRoot.OpenMainPanel();
 
         _dialoguePresenter.Next();
@@ -30,7 +30,7 @@ public class Tutorial_08_HighlightTasksBtnState_Menu : IState
 
     public void ExitState()
     {
-        _sceneRoot.OnClickToTasks_Main -= ChangeStateTo_09;
+        //_sceneRoot.OnClickToTasks_Main -= ChangeStateTo_09;
     }
 
     private void ChangeStateTo_09()

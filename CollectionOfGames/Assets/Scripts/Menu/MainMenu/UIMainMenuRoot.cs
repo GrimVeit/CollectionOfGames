@@ -3,82 +3,70 @@ using UnityEngine;
 
 public class UIMainMenuRoot : UIRoot
 {
-    [SerializeField] private MainPanel_Menu _mainPanel;
-    [SerializeField] private DailyRewardPanel_Menu _dailyRewardPanel;
-    [SerializeField] private LeaderboardPanel_Menu _leaderboardPanel;
-    [SerializeField] private TasksPanel_Menu _tasksPanel;
-    [SerializeField] private ChipsPanel_Menu _chipsPanel;
+    [SerializeField] private IntroPanel_Menu introPanel;
+    [SerializeField] private MainPanel_Menu mainPanel;
+    [SerializeField] private LeaderboardPanel_Menu leaderboardPanel;
 
     [Header("Others")]
-    [SerializeField] private AvatarNicknamePanel_Menu _avatarNicknamePanel;
-    [SerializeField] private SaveAvatarNicknameDataPanel_Menu _saveAvatarNicknameDataPanel;
-    [SerializeField] private MovePanel _loadRegistrationPanel;
-    [SerializeField] private MovePanel _playerDataPanel;
+    [SerializeField] private NicknamePanel_Menu nicknamePanel;
+    [SerializeField] private RegistrationPanel_Menu registrationPanel;
+    [SerializeField] private LoadingPanel_Menu loadRegistrationPanel;
 
     private ISoundProvider _soundProvider;
 
     public void SetSoundProvider(ISoundProvider soundProvider)
     {
-        this._soundProvider = soundProvider;
+        _soundProvider = soundProvider;
     }
 
     public void Initialize()
     {
-        _mainPanel.Initialize();
-        _dailyRewardPanel.Initialize();
-        _leaderboardPanel.Initialize();
-        _tasksPanel.Initialize();
-        _chipsPanel.Initialize();
+        introPanel.Initialize();
+        mainPanel.Initialize();
+        leaderboardPanel.Initialize();
 
-        _avatarNicknamePanel.Initialize();
-        _saveAvatarNicknameDataPanel.Initialize();
-        _loadRegistrationPanel.Initialize();
-        _playerDataPanel.Initialize();
+        nicknamePanel.Initialize();
+        registrationPanel.Initialize();
+        loadRegistrationPanel.Initialize();
     }
 
     public void Activate()
     {
-        _saveAvatarNicknameDataPanel.OnClickToSave += HandleClickToSave_AvatarNickname;
+        registrationPanel.OnClickToRegistrate += HandleClickToRegistrate_Registration;
 
-        _dailyRewardPanel.OnClickToBack += HandleClickToBack_DailyReward;
-        _leaderboardPanel.OnClickToBack += HandleClickToBack_Leaderboard;
-        _tasksPanel.OnClickToBack += HandleClickToBack_Tasks;
-        _chipsPanel.OnClickToBack += HandleClickToBack_Chips;
+        leaderboardPanel.OnClickToBack += HandleClickToBack_Leaderboard;
 
-        _mainPanel.OnClickToDailyReward += HandleClickToDailyReward_Main;
-        _mainPanel.OnClickToLeaderboard += HandleClickToLeaderboard_Main;
-        _mainPanel.OnClickToTasks += HandleClickToTasks_Main;
-        _mainPanel.OnClickToChips += HandleClickToChips_Main;
+        introPanel.OnClickToPlay += HandleClickToPlay_Intro;
 
-        _mainPanel.OnClickToMini += HandleClickToMini;
-        _mainPanel.OnClickToEuro += HandleClickToEuro;
-        _mainPanel.OnClickToAmerica += HandleClickToAmerica;
-        _mainPanel.OnClickToAmericaMulti += HandleClickToAmericaMulti;
-        _mainPanel.OnClickToFrench += HandleClickToFrench;
-        _mainPanel.OnClickToAmericaTracker += HandleClickToAmericaTracker;
+        mainPanel.OnClickToLeaderboard += HandleClickToLeaderboard_Main;
+
+        mainPanel.OnClickToChecked += HandleClickToChecked;
+        mainPanel.OnClickToChess += HandleClickToChess;
+        mainPanel.OnClickToDominoes += HandleClickToDominoes;
+        mainPanel.OnClickToSolitaire += HandleClickToSolitaire;
+        mainPanel.OnClickToLudo += HandleClickToLudo;
+        mainPanel.OnClickToLotto += HandleClickToLotto;
+        mainPanel.OnClickToRoulette += HandleClickToRoulette;
     }
 
 
     public void Deactivate()
     {
-        _saveAvatarNicknameDataPanel.OnClickToSave -= HandleClickToSave_AvatarNickname;
+        registrationPanel.OnClickToRegistrate -= HandleClickToRegistrate_Registration;
 
-        _dailyRewardPanel.OnClickToBack -= HandleClickToBack_DailyReward;
-        _leaderboardPanel.OnClickToBack -= HandleClickToBack_Leaderboard;
-        _tasksPanel.OnClickToBack -= HandleClickToBack_Tasks;
-        _chipsPanel.OnClickToBack -= HandleClickToBack_Chips;
+        leaderboardPanel.OnClickToBack -= HandleClickToBack_Leaderboard;
 
-        _mainPanel.OnClickToDailyReward -= HandleClickToDailyReward_Main;
-        _mainPanel.OnClickToLeaderboard -= HandleClickToLeaderboard_Main;
-        _mainPanel.OnClickToTasks -= HandleClickToTasks_Main;
-        _mainPanel.OnClickToChips -= HandleClickToChips_Main;
+        introPanel.OnClickToPlay -= HandleClickToPlay_Intro;
 
-        _mainPanel.OnClickToMini -= HandleClickToMini;
-        _mainPanel.OnClickToEuro -= HandleClickToEuro;
-        _mainPanel.OnClickToAmerica -= HandleClickToAmerica;
-        _mainPanel.OnClickToAmericaMulti -= HandleClickToAmericaMulti;
-        _mainPanel.OnClickToFrench -= HandleClickToFrench;
-        _mainPanel.OnClickToAmericaTracker -= HandleClickToAmericaTracker;
+        mainPanel.OnClickToLeaderboard -= HandleClickToLeaderboard_Main;
+
+        mainPanel.OnClickToChecked -= HandleClickToChecked;
+        mainPanel.OnClickToChess -= HandleClickToChess;
+        mainPanel.OnClickToDominoes -= HandleClickToDominoes;
+        mainPanel.OnClickToSolitaire -= HandleClickToSolitaire;
+        mainPanel.OnClickToLudo -= HandleClickToLudo;
+        mainPanel.OnClickToLotto -= HandleClickToLotto;
+        mainPanel.OnClickToRoulette -= HandleClickToRoulette;
 
         if (currentPanel != null)
             CloseOtherPanel(currentPanel);
@@ -86,89 +74,71 @@ public class UIMainMenuRoot : UIRoot
 
     public void Dispose()
     {
-        _mainPanel.Dispose();
-        _dailyRewardPanel.Dispose();
-        _leaderboardPanel.Dispose();
-        _tasksPanel.Dispose();
-        _chipsPanel.Dispose();
+        introPanel.Dispose();
+        mainPanel.Dispose();
+        leaderboardPanel.Dispose();
 
-        _avatarNicknamePanel.Dispose();
-        _saveAvatarNicknameDataPanel.Dispose();
-        _loadRegistrationPanel.Dispose();
-        _playerDataPanel.Dispose();
+        nicknamePanel.Dispose();
+        registrationPanel.Dispose();
+        loadRegistrationPanel.Dispose();
     }
 
 
     public void OpenMainPanel()
     {
-        OpenPanel(_mainPanel);
-    }
-
-    public void OpenDailyRewardPanel()
-    {
-        OpenPanel(_dailyRewardPanel);
+        OpenPanel(mainPanel);
     }
 
     public void OpenLeaderboardPanel()
     {
-        OpenPanel(_leaderboardPanel);
-    }
-
-    public void OpenTasksPanel()
-    {
-        OpenPanel(_tasksPanel);
-    }
-
-    public void OpenChipsPanel()
-    {
-        OpenPanel(_chipsPanel);
+        OpenPanel(leaderboardPanel);
     }
 
     #region OTHERS
 
-    public void OpenAvatarNicknamePanel()
+    public void OpenNicknamePanel()
     {
-        OpenOtherPanel(_avatarNicknamePanel);
+        OpenOtherPanel(nicknamePanel);
     }
 
-    public void CloseAvatarNicknamePanel()
+    public void CloseNicknamePanel()
     {
-        CloseOtherPanel(_avatarNicknamePanel);
+        CloseOtherPanel(nicknamePanel);
     }
 
 
 
-    public void OpenSaveAvatarDataPanel()
+    public void OpenRegistrationPanel()
     {
-        OpenOtherPanel(_saveAvatarNicknameDataPanel);
+        OpenOtherPanel(registrationPanel);
     }
 
-    public void CloseSaveAvatarDataPanel()
+    public void CloseRegistrationPanel()
     {
-        CloseOtherPanel(_saveAvatarNicknameDataPanel);
+        CloseOtherPanel(registrationPanel);
     }
 
 
     public void OpenLoadRegistrationPanel()
     {
-        OpenOtherPanel(_loadRegistrationPanel);
+        OpenOtherPanel(loadRegistrationPanel);
     }
 
     public void CloseLoadRegistrationPanel()
     {
-        CloseOtherPanel(_loadRegistrationPanel);
+        CloseOtherPanel(loadRegistrationPanel);
     }
 
 
 
-    public void OpenPlayerDataPanel()
+    public void OpenIntroPanel()
     {
-        OpenOtherPanel(_playerDataPanel);
+        OpenOtherPanel(introPanel);
     }
 
-    public void ClosePlayerDataPanel()
+    public void CloseIntroPanel()
     {
-        CloseOtherPanel(_playerDataPanel);
+        CloseOtherPanel(introPanel);
     }
 
     #endregion
@@ -178,28 +148,18 @@ public class UIMainMenuRoot : UIRoot
 
     #region OTHER
 
-    public event Action OnClickToSave_AvatarNickname;
+    public event Action OnClickToRegistrate_Registration;
 
-    private void HandleClickToSave_AvatarNickname()
+    private void HandleClickToRegistrate_Registration()
     {
-        OnClickToSave_AvatarNickname?.Invoke();
+        OnClickToRegistrate_Registration?.Invoke();
     }
 
     #endregion
 
     #region MainPanel
 
-    public event Action OnClickToDailyReward_Main;
     public event Action OnClickToLeaderboard;
-    public event Action OnClickToTasks_Main;
-    public event Action OnClickToChips_Main;
-
-    private void HandleClickToDailyReward_Main()
-    {
-        _soundProvider.PlayOneShot("Click");
-
-        OnClickToDailyReward_Main?.Invoke();
-    }
 
     private void HandleClickToLeaderboard_Main()
     {
@@ -208,85 +168,66 @@ public class UIMainMenuRoot : UIRoot
         OnClickToLeaderboard?.Invoke();
     }
 
-    private void HandleClickToTasks_Main()
+
+
+
+
+
+    public event Action OnClickToChecked;
+    public event Action OnClickToChess;
+    public event Action OnClickToDominoes;
+    public event Action OnClickToSolitaire;
+    public event Action OnClickToLudo;
+    public event Action OnClickToLotto;
+    public event Action OnClickToRoulette;
+
+    private void HandleClickToChecked()
     {
         _soundProvider.PlayOneShot("Click");
 
-        OnClickToTasks_Main?.Invoke();
+        OnClickToChecked?.Invoke();
     }
 
-    private void HandleClickToChips_Main()
+    private void HandleClickToChess()
     {
         _soundProvider.PlayOneShot("Click");
 
-        OnClickToChips_Main?.Invoke();
+        OnClickToChess?.Invoke();
     }
 
-
-
-
-
-
-    public event Action OnClickToMini;
-    public event Action OnClickToEuro;
-    public event Action OnClickToAmerica;
-    public event Action OnClickToAmericaMulti;
-    public event Action OnClickToFrench;
-    public event Action OnClickToAmericaTracker;
-
-    private void HandleClickToMini()
+    private void HandleClickToDominoes()
     {
         _soundProvider.PlayOneShot("Click");
 
-        OnClickToMini?.Invoke();
+        OnClickToDominoes?.Invoke();
     }
 
-    private void HandleClickToEuro()
+    private void HandleClickToSolitaire()
     {
         _soundProvider.PlayOneShot("Click");
 
-        OnClickToEuro?.Invoke();
+        OnClickToSolitaire?.Invoke();
     }
 
-    private void HandleClickToAmerica()
+    private void HandleClickToLudo()
     {
         _soundProvider.PlayOneShot("Click");
 
-        OnClickToAmerica?.Invoke();
+        OnClickToLudo?.Invoke();
     }
 
-    private void HandleClickToAmericaMulti()
+    private void HandleClickToLotto()
     {
         _soundProvider.PlayOneShot("Click");
 
-        OnClickToAmericaMulti?.Invoke();
+        OnClickToLotto?.Invoke();
     }
 
-    private void HandleClickToFrench()
+    private void HandleClickToRoulette()
     {
         _soundProvider.PlayOneShot("Click");
 
-        OnClickToFrench?.Invoke();
-    }
-
-    private void HandleClickToAmericaTracker()
-    {
-        _soundProvider.PlayOneShot("Click");
-
-        OnClickToAmericaTracker?.Invoke();
-    }
-
-    #endregion
-
-    #region DailyRewardPanel
-
-    public event Action OnClickToBack_DailyReward;
-
-    private void HandleClickToBack_DailyReward()
-    {
-        _soundProvider.PlayOneShot("Click");
-
-        OnClickToBack_DailyReward?.Invoke();
+        OnClickToRoulette?.Invoke();
     }
 
     #endregion
@@ -304,28 +245,15 @@ public class UIMainMenuRoot : UIRoot
 
     #endregion
 
-    #region TasksPanel
+    #region IntroPanel
 
-    public event Action OnClickToBack_Tasks;
+    public event Action OnClickToPlay_Intro;
 
-    private void HandleClickToBack_Tasks()
+    private void HandleClickToPlay_Intro()
     {
         _soundProvider.PlayOneShot("Click");
 
-        OnClickToBack_Tasks?.Invoke();
-    }
-
-    #endregion
-
-    #region ChipsPanel
-
-    public event Action OnClickToBack_Chips;
-
-    private void HandleClickToBack_Chips()
-    {
-        _soundProvider.PlayOneShot("Click");
-
-        OnClickToBack_Chips?.Invoke();
+        OnClickToPlay_Intro?.Invoke();
     }
 
     #endregion

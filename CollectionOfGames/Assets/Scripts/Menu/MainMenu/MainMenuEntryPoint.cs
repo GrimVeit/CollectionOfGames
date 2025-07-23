@@ -126,17 +126,17 @@ public class MainMenuEntryPoint : MonoBehaviour
                 metric_WinCountPresenter = new Metric_WinCountPresenter(new Metric_WinCountModel(PlayerPrefsKeys.METRIC_WIN_ROW_COUNTS, 3, timerDailyPresenter, storeTaskPresenter));
                 metric_BetNumberPresenter = new Metric_BetNumberPresenter(new Metric_BetNumberModel(PlayerPrefsKeys.METRIC_BET_NUMBER_COUNTS, 1, timerDailyPresenter, storeTaskPresenter));
 
-                stateMachine = new StateMachine_Menu
-                (sceneRoot, 
-                nicknamePresenter,
-                avatarPresenter,
-                firebaseAuthenticationPresenter,
-                firebaseDatabasePresenter,
-                dialoguePresenter, 
-                handPointerPresenter, 
-                storeGameProgressPresenter, 
-                storeGameProgressPresenter, 
-                storeGameProgressPresenter);
+                //stateMachine = new StateMachine_Menu
+                //(sceneRoot, 
+                //nicknamePresenter,
+                //avatarPresenter,
+                //firebaseAuthenticationPresenter,
+                //firebaseDatabasePresenter,
+                //dialoguePresenter, 
+                //handPointerPresenter, 
+                //storeGameProgressPresenter, 
+                //storeGameProgressPresenter, 
+                //storeGameProgressPresenter);
 
                 sceneRoot.SetSoundProvider(soundPresenter);
                 sceneRoot.Activate();
@@ -227,22 +227,22 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private void ActivateTransitions()
     {
-        sceneRoot.OnClickToMini += HandleGoToRoulette_Mini;
-        sceneRoot.OnClickToEuro += HandleGoToRoulette_Euro;
-        sceneRoot.OnClickToAmerica += HandleGoToRoulette_America;
-        sceneRoot.OnClickToAmericaMulti += HandleGoToRoulette_AmericaMulti;
-        sceneRoot.OnClickToFrench += HandleGoToRoulette_French;
-        sceneRoot.OnClickToAmericaTracker += HandleGoToRoulette_AmericaTracker;
+        sceneRoot.OnClickToChecked += HandleGoToRoulette_Mini;
+        sceneRoot.OnClickToChess += HandleGoToRoulette_Euro;
+        sceneRoot.OnClickToDominoes += HandleGoToRoulette_America;
+        sceneRoot.OnClickToSolitaire += HandleGoToRoulette_AmericaMulti;
+        sceneRoot.OnClickToLudo += HandleGoToRoulette_French;
+        sceneRoot.OnClickToLotto += HandleGoToRoulette_AmericaTracker;
     }
 
     private void DeactivateTransitions()
     {
-        sceneRoot.OnClickToMini -= HandleGoToRoulette_Mini;
-        sceneRoot.OnClickToEuro -= HandleGoToRoulette_Euro;
-        sceneRoot.OnClickToAmerica -= HandleGoToRoulette_America;
-        sceneRoot.OnClickToAmericaMulti -= HandleGoToRoulette_AmericaMulti;
-        sceneRoot.OnClickToFrench -= HandleGoToRoulette_French;
-        sceneRoot.OnClickToAmericaTracker -= HandleGoToRoulette_AmericaTracker;
+        sceneRoot.OnClickToChecked -= HandleGoToRoulette_Mini;
+        sceneRoot.OnClickToChess -= HandleGoToRoulette_Euro;
+        sceneRoot.OnClickToDominoes -= HandleGoToRoulette_America;
+        sceneRoot.OnClickToSolitaire -= HandleGoToRoulette_AmericaMulti;
+        sceneRoot.OnClickToLudo -= HandleGoToRoulette_French;
+        sceneRoot.OnClickToLotto -= HandleGoToRoulette_AmericaTracker;
     }
 
     private void Deactivate()

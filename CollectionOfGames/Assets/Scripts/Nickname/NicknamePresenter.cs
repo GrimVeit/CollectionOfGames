@@ -2,8 +2,8 @@ using System;
 
 public class NicknamePresenter
 {
-    private NicknameModel nicknameModel;
-    private NicknameView nicknameView;
+    private readonly NicknameModel nicknameModel;
+    private readonly NicknameView nicknameView;
 
     public NicknamePresenter(NicknameModel nicknameModel, NicknameView nicknameView)
     {
@@ -15,6 +15,7 @@ public class NicknamePresenter
     {
         ActivateEvents();
 
+        nicknameModel.Initialize();
         nicknameView.Initialize();
     }
 

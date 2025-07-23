@@ -8,12 +8,11 @@ using UnityEngine.UI;
 public class AvatarVisual
 {
     public int Id => id;
+    public Transform TransformAvatar => transformAvatar;
 
     [SerializeField] private int id;
     [SerializeField] private Button button;
-    [SerializeField] private Image imageSelect;
-    [SerializeField] private Sprite spriteSelect;
-    [SerializeField] private Sprite spriteDeselect;
+    [SerializeField] private Transform transformAvatar;
 
     public void Initialize()
     {
@@ -23,16 +22,6 @@ public class AvatarVisual
     public void Dispose()
     {
         button.onClick.RemoveListener(() => OnChooseAvatar?.Invoke(id));
-    }
-
-    public void Unselect()
-    {
-        imageSelect.sprite = spriteDeselect;
-    }
-
-    public void Select()
-    {
-        imageSelect.sprite = spriteSelect;
     }
 
     #region Output

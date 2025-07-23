@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tutorial_02_RepeatNameAndAvatarInputState_Menu : IState
+public class NameAndAvatarInputState_Menu : IState
 {
     private readonly IGlobalStateMachineProvider _globalStateMachineProvider;
     private readonly UIMainMenuRoot _sceneRoot;
@@ -11,7 +11,7 @@ public class Tutorial_02_RepeatNameAndAvatarInputState_Menu : IState
     private readonly FirebaseAuthenticationPresenter _firebaseAuthenticationPresenter;
     private readonly FirebaseDatabasePresenter _firebaseDatabasePresenter;
 
-    public Tutorial_02_RepeatNameAndAvatarInputState_Menu(IGlobalStateMachineProvider globalStateMachineProvider, UIMainMenuRoot sceneRoot, NicknamePresenter nicknamePresenter, AvatarPresenter avatarPresenter, FirebaseAuthenticationPresenter firebaseAuthenticationPresenter, FirebaseDatabasePresenter firebaseDatabasePresenter)
+    public NameAndAvatarInputState_Menu(IGlobalStateMachineProvider globalStateMachineProvider, UIMainMenuRoot sceneRoot, NicknamePresenter nicknamePresenter, AvatarPresenter avatarPresenter, FirebaseAuthenticationPresenter firebaseAuthenticationPresenter, FirebaseDatabasePresenter firebaseDatabasePresenter)
     {
         _globalStateMachineProvider = globalStateMachineProvider;
         _sceneRoot = sceneRoot;
@@ -29,10 +29,10 @@ public class Tutorial_02_RepeatNameAndAvatarInputState_Menu : IState
         _nicknamePresenter.OnChooseNickname += _firebaseDatabasePresenter.SetNickname;
         _avatarPresenter.OnChooseAvatar += _firebaseDatabasePresenter.SetAvatar;
 
-        _sceneRoot.OnClickToSave_AvatarNickname += ChangeStateToRegistration;
+        _sceneRoot.OnClickToRegistrate_Registration += ChangeStateToRegistration;
 
-        _sceneRoot.OpenAvatarNicknamePanel();
-        _sceneRoot.OpenSaveAvatarDataPanel();
+        _sceneRoot.OpenNicknamePanel();
+        _sceneRoot.OpenRegistrationPanel();
     }
 
     public void ExitState()
@@ -41,10 +41,10 @@ public class Tutorial_02_RepeatNameAndAvatarInputState_Menu : IState
         _nicknamePresenter.OnChooseNickname -= _firebaseDatabasePresenter.SetNickname;
         _avatarPresenter.OnChooseAvatar -= _firebaseDatabasePresenter.SetAvatar;
 
-        _sceneRoot.OnClickToSave_AvatarNickname -= ChangeStateToRegistration;
+        _sceneRoot.OnClickToRegistrate_Registration -= ChangeStateToRegistration;
 
-        _sceneRoot.CloseAvatarNicknamePanel();
-        _sceneRoot.CloseSaveAvatarDataPanel();
+        _sceneRoot.CloseNicknamePanel();
+        _sceneRoot.CloseRegistrationPanel();
     }
 
     private void ChangeStateToRegistration()

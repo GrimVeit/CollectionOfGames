@@ -22,22 +22,22 @@ public class LeaderboardView : View
 
     public void Initialize()
     {
-        buttonLeft.onClick.AddListener(() => OnClickToLeft?.Invoke());
-        buttonRight.onClick.AddListener(() => OnClickToRight?.Invoke());
+        //buttonLeft.onClick.AddListener(() => OnClickToLeft?.Invoke());
+        //buttonRight.onClick.AddListener(() => OnClickToRight?.Invoke());
     }
 
     public void Dispose()
     {
-        buttonLeft.onClick.RemoveListener(() => OnClickToLeft?.Invoke());
-        buttonRight.onClick.RemoveListener(() => OnClickToRight?.Invoke());
+        //buttonLeft.onClick.RemoveListener(() => OnClickToLeft?.Invoke());
+        //buttonRight.onClick.RemoveListener(() => OnClickToRight?.Invoke());
     }
 
     public void GetTopPlayers(List<UserData> users)
     {
-        for (int i = 0; i < users.Count; i++)
-        {
-            topRecords[i].SetData(users[i].Nickname, users[i].Record, spriteAvatars.GetSpriteById(users[i].Avatar));
-        }
+        //for (int i = 0; i < users.Count; i++)
+        //{
+        //    topRecords[i].SetData(users[i].Nickname, users[i].Record, spriteAvatars.GetSpriteById(users[i].Avatar));
+        //}
     }
 
     public void GetPagedPlayers(List<UserData> users, int rankOffset)

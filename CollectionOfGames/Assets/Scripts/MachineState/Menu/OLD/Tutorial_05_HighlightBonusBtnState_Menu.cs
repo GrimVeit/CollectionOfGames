@@ -21,7 +21,7 @@ public class Tutorial_05_HighlightBonusBtnState_Menu : IState
     {
         Debug.Log("<color=red>ACTIVATE STATE - TUTORIAL 05 STATE / MENU</color>");
 
-        _sceneRoot.OnClickToDailyReward_Main += ChangeStateTo_06;
+        //_sceneRoot.OnClickToDailyReward_Main += ChangeStateTo_06;
 
         _dialoguePresenter.Next();
         _handPointerProvider.Move(1);
@@ -29,7 +29,7 @@ public class Tutorial_05_HighlightBonusBtnState_Menu : IState
 
     public void ExitState()
     {
-        _sceneRoot.OnClickToDailyReward_Main -= ChangeStateTo_06;
+        //_sceneRoot.OnClickToDailyReward_Main -= ChangeStateTo_06;
     }
 
     private void ChangeStateTo_06()

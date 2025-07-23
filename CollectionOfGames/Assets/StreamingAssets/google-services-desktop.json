@@ -1,0 +1,32 @@
+{
+  "project_info": {
+    "project_number": "235709735965",
+    "firebase_url": "https://collectionofgames-1c9f7-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "collectionofgames-1c9f7",
+    "storage_bucket": "collectionofgames-1c9f7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235709735965:ios:213f32883ba9c1574912f4",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.CollectionOfGames"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR2G27gb4-S6ECQC-6pZ7PyKgjUQCwIow"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

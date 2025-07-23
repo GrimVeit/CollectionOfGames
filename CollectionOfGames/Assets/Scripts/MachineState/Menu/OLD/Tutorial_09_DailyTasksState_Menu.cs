@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Tutorial_03_IntroConfirmationState_Menu : IState
+public class Tutorial_09_DailyTasksState_Menu : IState
 {
     private readonly IGlobalStateMachineProvider _globalStateMachineProvider;
     private readonly DialoguePresenter _dialoguePresenter;
@@ -10,7 +9,7 @@ public class Tutorial_03_IntroConfirmationState_Menu : IState
 
     private IEnumerator coroutineTimer;
 
-    public Tutorial_03_IntroConfirmationState_Menu(IGlobalStateMachineProvider globalStateMachineProvider, DialoguePresenter dialoguePresenter, UIMainMenuRoot sceneRoot)
+    public Tutorial_09_DailyTasksState_Menu(IGlobalStateMachineProvider globalStateMachineProvider, DialoguePresenter dialoguePresenter, UIMainMenuRoot sceneRoot)
     {
         _globalStateMachineProvider = globalStateMachineProvider;
         _dialoguePresenter = dialoguePresenter;
@@ -19,21 +18,19 @@ public class Tutorial_03_IntroConfirmationState_Menu : IState
 
     public void EnterState()
     {
-        Debug.Log("<color=red>ACTIVATE STATE - TUTORIAL 03 STATE / MENU</color>");
+        Debug.Log("<color=red>ACTIVATE STATE - TUTORIAL 07 STATE / MENU</color>");
 
         _dialoguePresenter.Next();
-        _sceneRoot.OpenPlayerDataPanel();
+        //_sceneRoot.OpenTasksPanel();
 
         if (coroutineTimer != null) Coroutines.Stop(coroutineTimer);
 
-        coroutineTimer = Timer(3);
+        coroutineTimer = Timer(4);
         Coroutines.Start(coroutineTimer);
     }
 
     public void ExitState()
     {
-        _sceneRoot.ClosePlayerDataPanel();
-
         if (coroutineTimer != null) Coroutines.Stop(coroutineTimer);
     }
 
@@ -41,11 +38,11 @@ public class Tutorial_03_IntroConfirmationState_Menu : IState
     {
         yield return new WaitForSeconds(seconds);
 
-        ChangeStateTo_04();
+        ChangeStateTo_10();
     }
 
-    private void ChangeStateTo_04()
+    private void ChangeStateTo_10()
     {
-        _globalStateMachineProvider.SetState(_globalStateMachineProvider.GetState<Tutorial_04_ShowBalanceState_Menu>());
+        _globalStateMachineProvider.SetState(_globalStateMachineProvider.GetState<Tutorial_10_CompleteState_Menu>());
     }
 }

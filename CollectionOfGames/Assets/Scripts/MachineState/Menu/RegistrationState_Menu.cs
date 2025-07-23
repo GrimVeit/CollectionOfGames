@@ -22,9 +22,9 @@ public class RegistrationState_Menu : IState
         Debug.Log("<color=red>ACTIVATE STATE - REGISTRATION STATE / MENU</color>");
 
         _firebaseAuthenticationPresenter.OnSignUp += _firebaseDatabasePresenter.CreateEmptyDataToServer;
-        _firebaseAuthenticationPresenter.OnSignUp += ChangeStateTo_03;
+        _firebaseAuthenticationPresenter.OnSignUp += ChangeStateToStartMainMenu;
 
-        _firebaseAuthenticationPresenter.OnSignUpError += ChangeStateTo02;
+        _firebaseAuthenticationPresenter.OnSignUpError += ChangeStateToNameAndAvatarInput;
 
         _firebaseAuthenticationPresenter.SignUp();
 
@@ -34,20 +34,20 @@ public class RegistrationState_Menu : IState
     public void ExitState()
     {
         _firebaseAuthenticationPresenter.OnSignUp -= _firebaseDatabasePresenter.CreateEmptyDataToServer;
-        _firebaseAuthenticationPresenter.OnSignUp -= ChangeStateTo_03;
+        _firebaseAuthenticationPresenter.OnSignUp -= ChangeStateToStartMainMenu;
 
-        _firebaseAuthenticationPresenter.OnSignUpError -= ChangeStateTo02;
+        _firebaseAuthenticationPresenter.OnSignUpError -= ChangeStateToNameAndAvatarInput;
 
         _sceneRoot.CloseLoadRegistrationPanel();
     }
 
-    private void ChangeStateTo02()
+    private void ChangeStateToNameAndAvatarInput()
     {
-        _globalStateMachineProvider.SetState(_globalStateMachineProvider.GetState<Tutorial_02_RepeatNameAndAvatarInputState_Menu>());
+        _globalStateMachineProvider.SetState(_globalStateMachineProvider.GetState<NameAndAvatarInputState_Menu>());
     }
 
-    private void ChangeStateTo_03()
+    private void ChangeStateToStartMainMenu()
     {
-        _globalStateMachineProvider.SetState(_globalStateMachineProvider.GetState<Tutorial_03_IntroConfirmationState_Menu>());
+        _globalStateMachineProvider.SetState(_globalStateMachineProvider.GetState<StartMainState_Menu>());
     }
 }

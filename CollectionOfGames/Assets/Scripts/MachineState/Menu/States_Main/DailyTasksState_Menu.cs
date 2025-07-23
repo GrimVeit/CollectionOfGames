@@ -17,14 +17,14 @@ public class DailyTasksState_Menu : IState
     {
         Debug.Log("<color=red>ACTIVATE STATE - DAILY TASKS STATE / MENU</color>");
 
-        _sceneRoot.OnClickToBack_Tasks += ChangeStateToMain;
+        //_sceneRoot.OnClickToBack_Tasks += ChangeStateToMain;
 
-        _sceneRoot.OpenTasksPanel();
+        //_sceneRoot.OpenTasksPanel();
     }
 
     public void ExitState()
     {
-        _sceneRoot.OnClickToBack_Tasks -= ChangeStateToMain;
+        //_sceneRoot.OnClickToBack_Tasks -= ChangeStateToMain;
     }
 
     private void ChangeStateToMain()

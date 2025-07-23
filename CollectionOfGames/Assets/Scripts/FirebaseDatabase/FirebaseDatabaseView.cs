@@ -43,77 +43,77 @@ public class FirebaseDatabaseView : View
 
     public void DisplayUsersRecords(List<UserData> users)
     {
-        var top = users.Take(topCount).ToList();
+        //var top = users.Take(topCount).ToList();
 
-        for (int i = 0; i < top.Count; i++)
-        {
-            topRecords[i].SetData(top[i].Nickname, top[i].Record, spriteAvatars.GetSpriteById(top[i].Avatar));
-        }
+        //for (int i = 0; i < top.Count; i++)
+        //{
+        //    topRecords[i].SetData(top[i].Nickname, top[i].Record, spriteAvatars.GetSpriteById(top[i].Avatar));
+        //}
 
-        //pagedPlayers = users.Skip(topCount).ToList();
-        pagedPlayers = users.ToList();
+        ////pagedPlayers = users.Skip(topCount).ToList();
+        //pagedPlayers = users.ToList();
 
-        Debug.Log(totalPages);
+        //Debug.Log(totalPages);
 
-        ShowCurrentPage();
+        //ShowCurrentPage();
     }
 
-    private void ShowCurrentPage()
-    {
-        if(coroutineTimer != null) Coroutines.Stop(coroutineTimer);
+    //private void ShowCurrentPage()
+    //{
+    //    if(coroutineTimer != null) Coroutines.Stop(coroutineTimer);
 
-        foreach (Transform child in transformParent)
-        {
-            Destroy(child.gameObject);
-        }
+    //    foreach (Transform child in transformParent)
+    //    {
+    //        Destroy(child.gameObject);
+    //    }
 
-        coroutineTimer = Timer();
-        Coroutines.Start(coroutineTimer);
-    }
+    //    coroutineTimer = Timer();
+    //    Coroutines.Start(coroutineTimer);
+    //}
 
-    public void NextPage()
-    {
-        if(currentPage < totalPages - 1)
-        {
-            if (coroutineTimer != null) Coroutines.Stop(coroutineTimer);
+    //public void NextPage()
+    //{
+    //    if(currentPage < totalPages - 1)
+    //    {
+    //        if (coroutineTimer != null) Coroutines.Stop(coroutineTimer);
 
-            currentPage += 1;
-            ShowCurrentPage();
-        }
-    }
+    //        currentPage += 1;
+    //        ShowCurrentPage();
+    //    }
+    //}
 
-    public void PreviosPage()
-    {
-        if(currentPage > 0)
-        {
-            if (coroutineTimer != null) Coroutines.Stop(coroutineTimer);
+    //public void PreviosPage()
+    //{
+    //    if(currentPage > 0)
+    //    {
+    //        if (coroutineTimer != null) Coroutines.Stop(coroutineTimer);
 
-            currentPage -= 1;
-            ShowCurrentPage();
-        }
-    }
+    //        currentPage -= 1;
+    //        ShowCurrentPage();
+    //    }
+    //}
 
-    private IEnumerator Timer()
-    {
-        var pageData = pagedPlayers
-            .Skip(currentPage * playersPerPage)
-            .Take(playersPerPage)
-            .ToList();
+    //private IEnumerator Timer()
+    //{
+    //    var pageData = pagedPlayers
+    //        .Skip(currentPage * playersPerPage)
+    //        .Take(playersPerPage)
+    //        .ToList();
 
-        int rankOffset = topCount + currentPage * playersPerPage + 1;
+    //    int rankOffset = topCount + currentPage * playersPerPage + 1;
 
-        foreach (var player in pageData)
-        {
-            var grid = Instantiate(userGridPrefab, transformParent);
+    //    foreach (var player in pageData)
+    //    {
+    //        var grid = Instantiate(userGridPrefab, transformParent);
 
-            grid.SetData(rankOffset, player.Nickname, player.Record, spriteAvatars.GetSpriteById(player.Avatar));
-            grid.ActivateRight();
+    //        grid.SetData(rankOffset, player.Nickname, player.Record, spriteAvatars.GetSpriteById(player.Avatar));
+    //        grid.ActivateRight();
 
-            rankOffset += 1;
+    //        rankOffset += 1;
 
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
+    //        yield return new WaitForSeconds(0.1f);
+    //    }
+    //}
 }
 
 [Serializable]

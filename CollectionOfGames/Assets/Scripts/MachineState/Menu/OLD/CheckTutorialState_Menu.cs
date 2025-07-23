@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CheckTutorialState_Menu : IState
 {
-
     private IGlobalStateMachineProvider _machineProvider;
     private ITutorialProgressProvider_Read _tutorialProgressProvider;
 
