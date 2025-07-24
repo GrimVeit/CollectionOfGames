@@ -4,40 +4,41 @@ using UnityEngine;
 
 public class LoadScreenPanel : MovePanel
 {
-    [SerializeField] private LazyMotionGroup lazyMotionGroup;
+    [SerializeField] private List<AnimationElement> animationElementIcons;
+    [SerializeField] private float timeWait;
+
+    private IEnumerator timer;
 
     private void Awake()
     {
-        OnDeactivatePanel += lazyMotionGroup.Deactivate;
+        animationElementIcons.ForEach(data => OnDeactivatePanel += data.Deactivate);
 
         Initialize();
     }
 
     private void OnDestroy()
     {
-        OnDeactivatePanel -= lazyMotionGroup.Deactivate;
+        if (timer != null) Coroutines.Stop(timer);
+
+        animationElementIcons.ForEach(data => OnDeactivatePanel -= data.Deactivate);
 
         Dispose();
-    }
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        lazyMotionGroup.Initialize();
-    }
-
-    public override void Dispose()
-    {
-        base.Dispose();
-
-        lazyMotionGroup.Dispose();
     }
 
     public override void ActivatePanel()
     {
         base.ActivatePanel();
 
-        lazyMotionGroup.Activate();
+        if (timer != null) Coroutines.Stop(timer);
+
+        timer = Timer();
+        Coroutines.Start(timer);
+    }
+
+    private IEnumerator Timer()
+    {
+        yield return new WaitForSeconds(timeWait);
+
+        animationElementIcons.ForEach(data => data.Activate(1));
     }
 }

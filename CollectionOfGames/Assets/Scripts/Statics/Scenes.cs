@@ -11,10 +11,11 @@ public static class Scenes
 
     public const string MAIN_MENU = "MainMenuScene";
 
-    public const string GAME_1_MINI = "RouletteGameScene_1_Mini";
-    public const string GAME_2_EURO = "RouletteGameScene_2_Euro";
-    public const string GAME_3_AMERICA = "RouletteGameScene_3_America";
-    public const string GAME_4_AMERICA_MULTI = "RouletteGameScene_4_AmericaMulti";
-    public const string GAME_5_FRENCH = "RouletteGameScene_5_French";
-    public const string GAME_6_AMERICA_TRACKER = "RouletteGameScene_6_AmericaTracker";
+    public const string GAME_CHECKERS = "GameScene_Checkers";
+    public const string GAME_CHESS = "GameScene_Chess";
+    public const string GAME_DOMINOES = "GameScene_Dominoes";
+    public const string GAME_SOLITAIRE = "GameScene_Solitaire";
+    public const string GAME_LUDO = "GameScene_Ludo";
+    public const string GAME_LOTTO = "GameScene_Lotto";
+    public const string GAME_ROULETTE = "GameScene_Roulette";
 }

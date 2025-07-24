@@ -52,6 +52,8 @@ public class GameEntryPoint
 
         sceneEntryPoint.Run(rootView);
 
+        sceneEntryPoint.OnGoToGame_Checkers += () => coroutines.StartCoroutine(LoadAndStartGameScene_Checkers());
+
         //sceneEntryPoint.OnGoToRoulette_Mini += () => coroutines.StartCoroutine(LoadAndStartGameScene_1_Mini());
         //sceneEntryPoint.OnGoToRoulette_Euro += () => coroutines.StartCoroutine(LoadAndStartGameScene_2_Euro());
         //sceneEntryPoint.OnGoToRoulette_America += () => coroutines.StartCoroutine(LoadAndStartGameScene_3_America());
@@ -62,112 +64,23 @@ public class GameEntryPoint
         yield return rootView.HideLoadingScreen(0);
     }
 
-    private IEnumerator LoadAndStartGameScene_1_Mini()
+    private IEnumerator LoadAndStartGameScene_Checkers()
     {
         yield return rootView.ShowLoadingScreen(1);
 
+        yield return new WaitForSeconds(0.6f);
+
         yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.GAME_1_MINI);
+        yield return LoadScene(Scenes.GAME_CHECKERS);
 
         yield return new WaitForEndOfFrame();
 
-        var sceneEntryPoint = Object.FindObjectOfType<GameSceneEntryPoint_MiniGame>();
+        var sceneEntryPoint = Object.FindObjectOfType<GameEntryPoint_Checkers>();
         sceneEntryPoint.Run(rootView);
 
         sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
 
         yield return rootView.HideLoadingScreen(1);
-    }
-
-    private IEnumerator LoadAndStartGameScene_2_Euro()
-    {
-        yield return rootView.ShowLoadingScreen(2);
-
-        yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.GAME_2_EURO);
-
-        yield return new WaitForEndOfFrame();
-
-        var sceneEntryPoint = Object.FindObjectOfType<GameSceneEntryPoint_Euro>();
-
-        sceneEntryPoint.Run(rootView);
-        sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
-
-
-        yield return rootView.HideLoadingScreen(2);
-    }
-
-    private IEnumerator LoadAndStartGameScene_3_America()
-    {
-        yield return rootView.ShowLoadingScreen(3);
-
-        yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.GAME_3_AMERICA);
-
-        yield return new WaitForEndOfFrame();
-
-        var sceneEntryPoint = Object.FindObjectOfType<GameSceneEntryPoint_America>();
-        sceneEntryPoint.Run(rootView);
-
-        sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
-
-        yield return rootView.HideLoadingScreen(3);
-    }
-
-    private IEnumerator LoadAndStartGameScene_4_AmericaMulti()
-    {
-        yield return rootView.ShowLoadingScreen(4);
-
-        yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.GAME_4_AMERICA_MULTI);
-
-        yield return new WaitForEndOfFrame();
-
-        var sceneEntryPoint = Object.FindObjectOfType<GameSceneEntryPoint_AmericaMulti>();
-        sceneEntryPoint.Run(rootView);
-
-        sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
-
-
-        yield return rootView.HideLoadingScreen(4);
-    }
-
-    private IEnumerator LoadAndStartGameScene_5_French()
-    {
-        yield return rootView.ShowLoadingScreen(5);
-
-        yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.GAME_5_FRENCH);
-
-        yield return new WaitForEndOfFrame();
-
-        var sceneEntryPoint = Object.FindObjectOfType<GameSceneEntryPoint_French>();
-        sceneEntryPoint.Run(rootView);
-
-        sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
-
-
-        yield return rootView.HideLoadingScreen(5);
-    }
-
-    private IEnumerator LoadAndStartGameScene_6_AmericaTracker()
-    {
-        yield return rootView.ShowLoadingScreen(6);
-
-        yield return new WaitForSeconds(0.3f);
-
-        yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.GAME_6_AMERICA_TRACKER);
-
-        yield return new WaitForEndOfFrame();
-
-        var sceneEntryPoint = Object.FindObjectOfType<GameSceneEntryPoint_AmericaTracker>();
-        sceneEntryPoint.Run(rootView);
-
-        sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
-
-
-        yield return rootView.HideLoadingScreen(6);
     }
 
     private IEnumerator LoadScene(string scene)

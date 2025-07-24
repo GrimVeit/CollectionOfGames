@@ -42,10 +42,10 @@ public class LeaderboardView : View
 
     public void GetPagedPlayers(List<UserData> users, int rankOffset)
     {
-        if (coroutineTimer != null) Coroutines.Stop(coroutineTimer);
+        //if (coroutineTimer != null) Coroutines.Stop(coroutineTimer);
 
-        coroutineTimer = Timer(users, rankOffset);
-        Coroutines.Start(coroutineTimer);
+        //coroutineTimer = Timer(users, rankOffset);
+        //Coroutines.Start(coroutineTimer);
     }
 
     private IEnumerator Timer(List<UserData> users, int rankOffset)
