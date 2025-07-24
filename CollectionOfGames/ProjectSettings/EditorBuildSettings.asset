@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Games/GameScene_Dominoes.unity
     guid: 2d2776c92f7ebb74ca74689641b41f99
+  - enabled: 1
+    path: Assets/Scenes/Games/GameScene_Solitaire.unity
+    guid: 2315622144a9ef14690ae3307858226b
+  - enabled: 1
+    path: Assets/Scenes/Games/GameScene_Ludo.unity
+    guid: 33189d1e46856304bb0e7fde0737fe89
+  - enabled: 1
+    path: Assets/Scenes/Games/GameScene_Lotto.unity
+    guid: 712c1d0030d55454a850c971d561aa2c
   m_configObjects: {}

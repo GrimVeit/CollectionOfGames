@@ -56,6 +56,8 @@ public class GameEntryPoint
         sceneEntryPoint.OnGoToGame_Chess += () => coroutines.StartCoroutine(LoadAndStartGameScene_Chess());
         sceneEntryPoint.OnGoToGame_Dominoes += () => coroutines.StartCoroutine(LoadAndStartGameScene_Dominoes());
         sceneEntryPoint.OnGoToGame_Solitaire += () => coroutines.StartCoroutine(LoadAndStartGameScene_Solitaire());
+        sceneEntryPoint.OnGoToGame_Ludo += () => coroutines.StartCoroutine(LoadAndStartGameScene_Ludo());
+        sceneEntryPoint.OnGoToGame_Lotto += () => coroutines.StartCoroutine(LoadAndStartGameScene_Lotto());
 
         //sceneEntryPoint.OnGoToRoulette_Mini += () => coroutines.StartCoroutine(LoadAndStartGameScene_1_Mini());
         //sceneEntryPoint.OnGoToRoulette_Euro += () => coroutines.StartCoroutine(LoadAndStartGameScene_2_Euro());
@@ -141,6 +143,44 @@ public class GameEntryPoint
         sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
 
         yield return rootView.HideLoadingScreen(4);
+    }
+
+    private IEnumerator LoadAndStartGameScene_Ludo()
+    {
+        yield return rootView.ShowLoadingScreen(5);
+
+        yield return new WaitForSeconds(0.6f);
+
+        yield return LoadScene(Scenes.BOOT);
+        yield return LoadScene(Scenes.GAME_LUDO);
+
+        yield return new WaitForEndOfFrame();
+
+        var sceneEntryPoint = Object.FindObjectOfType<GameEntryPoint_Ludo>();
+        sceneEntryPoint.Run(rootView);
+
+        sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
+
+        yield return rootView.HideLoadingScreen(5);
+    }
+
+    private IEnumerator LoadAndStartGameScene_Lotto()
+    {
+        yield return rootView.ShowLoadingScreen(6);
+
+        yield return new WaitForSeconds(0.6f);
+
+        yield return LoadScene(Scenes.BOOT);
+        yield return LoadScene(Scenes.GAME_LOTTO);
+
+        yield return new WaitForEndOfFrame();
+
+        var sceneEntryPoint = Object.FindObjectOfType<GameEntryPoint_Lotto>();
+        sceneEntryPoint.Run(rootView);
+
+        sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
+
+        yield return rootView.HideLoadingScreen(6);
     }
 
     private IEnumerator LoadScene(string scene)
