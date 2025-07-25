@@ -62,7 +62,7 @@ public class PseudoChipModel
             }
         }
 
-        _soundProvider.PlayOneShot("Whoosh");
+        //_soundProvider.PlayOneShot("Whoosh");
         OnEndMove?.Invoke();
     }
 

@@ -58,6 +58,7 @@ public class GameEntryPoint
         sceneEntryPoint.OnGoToGame_Solitaire += () => coroutines.StartCoroutine(LoadAndStartGameScene_Solitaire());
         sceneEntryPoint.OnGoToGame_Ludo += () => coroutines.StartCoroutine(LoadAndStartGameScene_Ludo());
         sceneEntryPoint.OnGoToGame_Lotto += () => coroutines.StartCoroutine(LoadAndStartGameScene_Lotto());
+        sceneEntryPoint.OnGoToGame_Roulette += () => coroutines.StartCoroutine(LoadAndStartGameScene_Roulette());
 
         //sceneEntryPoint.OnGoToRoulette_Mini += () => coroutines.StartCoroutine(LoadAndStartGameScene_1_Mini());
         //sceneEntryPoint.OnGoToRoulette_Euro += () => coroutines.StartCoroutine(LoadAndStartGameScene_2_Euro());
@@ -181,6 +182,25 @@ public class GameEntryPoint
         sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
 
         yield return rootView.HideLoadingScreen(6);
+    }
+
+    private IEnumerator LoadAndStartGameScene_Roulette()
+    {
+        yield return rootView.ShowLoadingScreen(7);
+
+        yield return new WaitForSeconds(0.6f);
+
+        yield return LoadScene(Scenes.BOOT);
+        yield return LoadScene(Scenes.GAME_ROULETTE);
+
+        yield return new WaitForEndOfFrame();
+
+        var sceneEntryPoint = Object.FindObjectOfType<GameEntryPoint_Roulette>();
+        sceneEntryPoint.Run(rootView);
+
+        sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
+
+        yield return rootView.HideLoadingScreen(7);
     }
 
     private IEnumerator LoadScene(string scene)
