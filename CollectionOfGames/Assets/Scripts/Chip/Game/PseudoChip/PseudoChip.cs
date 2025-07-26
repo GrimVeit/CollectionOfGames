@@ -29,6 +29,16 @@ public class PseudoChip : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     }
 
+    public void Show()
+    {
+        rectTransform.gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        rectTransform.gameObject.SetActive(false);
+    }
+
     #region Methods
 
     public void Teleport()

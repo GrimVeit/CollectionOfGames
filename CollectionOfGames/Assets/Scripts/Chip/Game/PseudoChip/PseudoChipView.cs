@@ -28,6 +28,16 @@ public class PseudoChipView : View
         }
     }
 
+    public void Show()
+    {
+        pseudoChips.ForEach(data => data.Show());
+    }
+
+    public void Hide()
+    {
+        pseudoChips.ForEach(data => data.Hide());
+    }
+
     public void GrabPseudoChip(PseudoChip chip)
     {
         UngrabCurrentPseudoChip();

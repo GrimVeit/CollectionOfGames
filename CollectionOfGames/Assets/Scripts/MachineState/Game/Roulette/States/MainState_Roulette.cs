@@ -23,7 +23,7 @@ public class MainState_Roulette : IState
     {
         Debug.Log("ACTIVATE STATE - MAIN");
 
-        _sceneRoot.OnClickToSpin += ChangeStateToRoulette;
+        _sceneRoot.OnClickToSpin_MainPanel += ChangeStateToRoulette;
 
         _sceneRoot.OpenMainPanel();
 
@@ -37,7 +37,7 @@ public class MainState_Roulette : IState
     {
         Debug.Log("DEACTIVATE STATE - MAIN");
 
-        _sceneRoot.OnClickToSpin -= ChangeStateToRoulette;
+        _sceneRoot.OnClickToSpin_MainPanel -= ChangeStateToRoulette;
 
         _pseudoChipActivatorProvider.Deactivate();
         _cellActivatorProvider.Deactivate();

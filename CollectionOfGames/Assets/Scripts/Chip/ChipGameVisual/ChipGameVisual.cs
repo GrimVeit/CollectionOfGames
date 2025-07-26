@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -27,10 +28,14 @@ public class ChipGameVisual : MonoBehaviour
         transform.position = pos;
     }
 
-    public void Return()
+    public void Return(Action OnExitReturn)
     {
         transform.SetParent(_transformParent);
-        transform.DOLocalMove(Vector3.zero, 0.1f).OnComplete(() => Destroy(gameObject));
+        transform.DOLocalMove(Vector3.zero, 0.1f).OnComplete(() => 
+        {
+            OnExitReturn?.Invoke();
+            Destroy(gameObject);
+        });
     }
 
     public void Fallen(Vector3 vector)

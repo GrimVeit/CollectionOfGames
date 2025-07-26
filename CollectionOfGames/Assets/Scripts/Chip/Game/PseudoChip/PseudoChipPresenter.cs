@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PseudoChipPresenter : IPseudoChipActivatorProvider
+public class PseudoChipPresenter : IPseudoChipActivatorProvider, IPseudoChipVisualProvider
 {
     private readonly PseudoChipModel _model;
     private readonly PseudoChipView _view;
@@ -69,6 +69,16 @@ public class PseudoChipPresenter : IPseudoChipActivatorProvider
         _model.Deactivate();
     }
 
+    public void Show()
+    {
+        _view.Show();
+    }
+
+    public void Hide()
+    {
+        _view.Hide();
+    }
+
     #endregion
 }
 
@@ -76,4 +86,10 @@ public interface IPseudoChipActivatorProvider
 {
     void Activate();
     void Deactivate();
+}
+
+public interface IPseudoChipVisualProvider
+{
+    void Show();
+    void Hide();
 }

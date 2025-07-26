@@ -90,7 +90,7 @@ public class GameSceneEntryPoint_AmericaTracker : MonoBehaviour
         pseudoChipPresenter = new PseudoChipPresenter(new PseudoChipModel(soundPresenter), viewContainer.GetView<PseudoChipView>());
         //betPresenter = new BetPresenter(new BetModel(chipGroup, storeChipPresenter, bets, new List<IRouletteValueProvider>() { roulettePresenter }, bankPresenter, metric_BetNumberPresenter, metric_WinCountPresenter, notificationPresenter, soundPresenter, scoreRecordPresenter), viewContainer.GetView<BetView>());
         betCellPresenter = new BetCellPresenter(new BetCellModel(betPresenter), viewContainer.GetView<BetCellView>());
-        chipGameVisualPresenter = new ChipGameVisualPresenter(new ChipGameVisualModel(betPresenter), viewContainer.GetView<ChipGameVisualView>());
+        //chipGameVisualPresenter = new ChipGameVisualPresenter(new ChipGameVisualModel(betPresenter), viewContainer.GetView<ChipGameVisualView>());
 
         animationFramePresenter = new AnimationFramePresenter(new AnimationFrameModel(), viewContainer.GetView<AnimationFrameView>());
         stateMachine = new StateMachine_AmericaTracker

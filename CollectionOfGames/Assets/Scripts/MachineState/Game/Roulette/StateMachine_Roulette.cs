@@ -20,6 +20,11 @@ public class StateMachine_Roulette : IGlobalStateMachineProvider
     {
         states[typeof(MainState_Roulette)] = new MainState_Roulette(this, sceneRoot, betPresenter, betCellActivatorProvider, pseudoChipActivatorProvider);
         states[typeof(RouletteState_Roulette)] = new RouletteState_Roulette(this, sceneRoot, roulettePresenter, rouletteBallPresenter);
+        states[typeof(CheckResultState_Roulette)] = new CheckResultState_Roulette(this, betPresenter);
+        states[typeof(WinState_Roulette)] = new WinState_Roulette(this, sceneRoot);
+        states[typeof(LoseState_Roulette)] = new LoseState_Roulette(this, sceneRoot);
+
+        //states[typeof(ResultState_Euro)]
     }
 
     public void Initialize()
@@ -29,7 +34,7 @@ public class StateMachine_Roulette : IGlobalStateMachineProvider
 
     public void Dispose()
     {
-
+        _currentState?.ExitState();
     }
 
     public IState GetState<T>() where T : IState

@@ -35,7 +35,8 @@ public class AvatarView : View
 
     public void Select(int id)
     {
-        transformFrame.DOMove(avatarVisuals[id].TransformAvatar.position, 0.2f);
+        if(transformFrame != null)
+           transformFrame.DOMove(avatarVisuals[id].TransformAvatar.position, 0.2f);
 
         var avatar = spriteAvatars.GetSpriteById(id);
 

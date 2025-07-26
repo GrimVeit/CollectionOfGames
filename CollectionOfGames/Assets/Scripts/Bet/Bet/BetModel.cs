@@ -7,8 +7,11 @@ using Vector3 = System.Numerics.Vector3;
 
 public class BetModel
 {
-    public event Action OnAddBet;
+    public event Action OnWin;
+    public event Action OnLose;
 
+    public event Action OnAddBet;
+     
     public event Action<int, Chip, int, TypeCell, Vector3> OnAddChip;
     public event Action<int, int> OnReturnChip;
     public event Action<int, int> OnFallenChip;
@@ -61,6 +64,7 @@ public class BetModel
             _currentBets.Add(new BetInfo(id, chip, positionIndexes[i]));
         }
 
+        _moneyProvider.SendMoney(-chip.Nominal);
         _soundProvider.PlayOneShot("ChipDrop");
         OnAddBet?.Invoke();
     }
@@ -79,6 +83,7 @@ public class BetModel
         OnReturnChip?.Invoke(lastBet.IdChipGroup, lastBet.PosIndex);
 
         _currentBets.Remove(lastBet);
+        _moneyProvider.SendMoney(lastBet.Chip.Nominal);
         _soundProvider.PlayOneShot("Whoosh");
     }
 
@@ -94,10 +99,11 @@ public class BetModel
         for (int i = 0; i < _currentBets.Count; i++)
         {
             //AddChipInStore(_currentBets[i].IdChipGroup);
+            _moneyProvider.SendMoney(_currentBets[i].Chip.Nominal);
             OnReturnChip?.Invoke(_currentBets[i].IdChipGroup, _currentBets[i].PosIndex);
         }
 
-        _soundProvider.PlayOneShot("Whoosh");
+        //_soundProvider.PlayOneShot("Whoosh");
 
         _currentBets.Clear();
     }
@@ -208,6 +214,7 @@ public class BetModel
                     var betInfo = new BetInfo(savedBet.Key.Item1, _savedBets.FirstOrDefault(b => b.IdChipGroup == savedBet.Key.Item1 && b.PosIndex == savedBet.Key.Item2).Chip, savedBet.Key.Item2);
                     _currentBets.Add(betInfo);
                     OnAddChip?.Invoke(betInfo.IdChipGroup, betInfo.Chip, betInfo.PosIndex, TypeCell.Tracker, new Vector3());
+                    _moneyProvider.SendMoney(-betInfo.Chip.Nominal);
                 }
             }
         }
@@ -246,19 +253,19 @@ public class BetModel
             }
         }
 
-        if(totalWin == 0)
-        {
-            //_metric_WinCount.Reset();
-        }
-        else
-        {
-            //_metric_WinCount.Win();
-        }
-
         float winFloat = Mathf.Round(totalWin * 10f) / 10f;
         int winInt = (int)Math.Round(winFloat, 1);
         _moneyProvider.SendMoney(winInt);
         OnGetWin?.Invoke(winInt);
+
+        if (winInt == 0)
+        {
+            OnLose?.Invoke();
+        }
+        else
+        {
+            OnWin?.Invoke();
+        }
 
         Debug.Log("Winnings:" + string.Join(", ", winningPosIndexes));
     }

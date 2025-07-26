@@ -20,14 +20,14 @@ public class RouletteBallModel
     {
         OnStartSpin?.Invoke();
 
-        _soundSpin.Play();
+        //_soundSpin.Play();
     }
 
     public void BallStopped(Vector3 vector)
     {
         OnBallStopped?.Invoke(vector);
 
-        _soundSpin.Stop();
-        _soundFall.Play();
+        //_soundSpin.Stop();
+        //_soundFall.Play();
     }
 }

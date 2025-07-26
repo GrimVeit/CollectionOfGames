@@ -22,7 +22,7 @@ public class RouletteState_Roulette : IState
         Debug.Log("ACTIVATE STATE - ROULETTE");
 
         _rouletteBallPresenter.OnBallStopped += _roulettePresenter.RollBallToSlot;
-        _roulettePresenter.OnStopSpin += ChangeStateToResult;
+        _roulettePresenter.OnStopSpin += ChangeStateToCheckResult;
 
         _sceneRoot.OpenRoulettePanel();
         _roulettePresenter.StartSpin();
@@ -34,11 +34,11 @@ public class RouletteState_Roulette : IState
         Debug.Log("DEACTIVATE STATE - ROULETTE");
 
         _rouletteBallPresenter.OnBallStopped -= _roulettePresenter.RollBallToSlot;
-        _roulettePresenter.OnStopSpin -= ChangeStateToResult;
+        _roulettePresenter.OnStopSpin -= ChangeStateToCheckResult;
     }
 
-    private void ChangeStateToResult()
+    private void ChangeStateToCheckResult()
     {
-        _machineProvider.SetState(_machineProvider.GetState<ResultState_Euro>());
+        _machineProvider.SetState(_machineProvider.GetState<CheckResultState_Roulette>());
     }
 }

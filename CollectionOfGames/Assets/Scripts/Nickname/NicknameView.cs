@@ -17,12 +17,14 @@ public class NicknameView : View
 
     public void Initialize()
     {
-        inputFieldNickname.onValueChanged.AddListener(HandlerOnNicknameTextValueChanged);
+        if(inputFieldNickname != null)
+           inputFieldNickname.onValueChanged.AddListener(HandlerOnNicknameTextValueChanged);
     }
 
     public void Dispose()
     {
-        inputFieldNickname.onValueChanged.RemoveListener(HandlerOnNicknameTextValueChanged);
+        if(inputFieldNickname != null)
+           inputFieldNickname.onValueChanged.RemoveListener(HandlerOnNicknameTextValueChanged);
     }
 
     public void ActivateButton()

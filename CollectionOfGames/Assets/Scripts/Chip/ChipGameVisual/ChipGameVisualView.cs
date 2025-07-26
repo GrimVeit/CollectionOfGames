@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,11 @@ public class ChipGameVisualView : View
         }
     }
 
-    public void ReturnChip(int id, int posIndex)
+    public void ReturnChip(int id, int posIndex, Action onComplete)
     {
         var chipGamePosition = GetGamePositionById(posIndex);
 
-        chipGamePosition.ReturnChip(id);
+        chipGamePosition.ReturnChip(id, onComplete);
     }
 
     public void FallenChip(int id, int posIndex)
@@ -99,7 +100,7 @@ public class ChipGamePosition
 
     public Vector3 GetPosition()
     {
-        return transform.position + new Vector3(Random.Range(-displacement_x, displacement_x), Random.Range(-displacement_y, displacement_y), 0);
+        return transform.position + new Vector3(UnityEngine.Random.Range(-displacement_x, displacement_x), UnityEngine.Random.Range(-displacement_y, displacement_y), 0);
     }
 
     public void AddChip(ChipGameVisual chip, int idGroup)
@@ -107,7 +108,7 @@ public class ChipGamePosition
         chipGameVisuals.Add(chip, idGroup);
     }
 
-    public void ReturnChip(int id)
+    public void ReturnChip(int id, Action actionComplete)
     {
         if (chipGameVisuals.Count == 0) return;
 
@@ -120,7 +121,7 @@ public class ChipGamePosition
         }
 
         chipGameVisuals.Remove(chip);
-        chip.Return();
+        chip.Return(actionComplete);
     }
 
     public void FallenChip(int id, Vector3 vector)
