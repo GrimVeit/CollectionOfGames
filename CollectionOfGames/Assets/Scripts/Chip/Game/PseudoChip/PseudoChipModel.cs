@@ -56,6 +56,8 @@ public class PseudoChipModel
 
             if(collider.gameObject.TryGetComponent(out ICell cell))
             {
+                Debug.Log(collider.gameObject.name);
+
                 cell.AddChip(id, chip, transform.position);
                 Teleport();
                 return;

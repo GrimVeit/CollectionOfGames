@@ -17,6 +17,8 @@ public class BetCellModel
 
     public void AddChip(int id, Chip chip, List<int> positionIndexes, TypeCell typeCell, bool isNumber, Vector3 vector)
     {
+        UnityEngine.Debug.Log("TEST");
+
         _betProvider.AddChip(id, chip, positionIndexes, typeCell, isNumber, vector);
     }
 

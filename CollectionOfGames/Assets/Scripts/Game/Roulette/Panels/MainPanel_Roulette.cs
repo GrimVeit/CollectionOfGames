@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class MainPanel_Roulette : MovePanel
 {
     [SerializeField] private Button buttonBack;
+    [SerializeField] private Button buttonSpin;
 
     public override void Initialize()
     {
         base.Initialize();
 
         buttonBack.onClick.AddListener(() => OnClickToBack?.Invoke());
+        buttonSpin.onClick.AddListener(() => OnClickToSpin?.Invoke());
     }
 
     public override void Dispose()
@@ -20,11 +22,13 @@ public class MainPanel_Roulette : MovePanel
         base.Dispose();
 
         buttonBack.onClick.RemoveListener(() => OnClickToBack?.Invoke());
+        buttonSpin.onClick.RemoveListener(() => OnClickToSpin?.Invoke());
     }
 
     #region Output
 
     public event Action OnClickToBack;
+    public event Action OnClickToSpin;
 
     #endregion
 }

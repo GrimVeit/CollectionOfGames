@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameEntryPoint_Roulette : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
+    [SerializeField] private Bets bets;
     [SerializeField] private UIGameRoot_Roulette menuRootPrefab;
 
     private UIGameRoot_Roulette sceneRoot;
@@ -19,6 +20,12 @@ public class GameEntryPoint_Roulette : MonoBehaviour
     private RouletteBallPresenter rouletteBallPresenter;
 
     private PseudoChipPresenter pseudoChipPresenter;
+
+    private BetPresenter betPresenter;
+    private BetCellPresenter betCellPresenter;
+    private ChipGameVisualPresenter chipGameVisualPresenter;
+
+    private StateMachine_Roulette stateMachine;
 
     public void Run(UIRootView uIRootView)
     {
@@ -44,6 +51,13 @@ public class GameEntryPoint_Roulette : MonoBehaviour
 
         pseudoChipPresenter = new PseudoChipPresenter(new PseudoChipModel(soundPresenter), viewContainer.GetView<PseudoChipView>());
 
+        betPresenter = new BetPresenter(new BetModel(bets, new List<IRouletteValueProvider>() { roulettePresenter }, bankPresenter, soundPresenter), viewContainer.GetView<BetView>());
+        betCellPresenter = new BetCellPresenter(new BetCellModel(betPresenter), viewContainer.GetView<BetCellView>());
+
+        chipGameVisualPresenter = new ChipGameVisualPresenter(new ChipGameVisualModel(betPresenter), viewContainer.GetView<ChipGameVisualView>());
+
+        stateMachine = new StateMachine_Roulette(sceneRoot, rouletteBallPresenter, roulettePresenter, betPresenter, betCellPresenter, pseudoChipPresenter, soundPresenter);
+
         ActivateEvents();
 
         sceneRoot.Activate();
@@ -58,7 +72,12 @@ public class GameEntryPoint_Roulette : MonoBehaviour
 
         pseudoChipPresenter.Initialize();
 
-        sceneRoot.OpenMainPanel();
+        betPresenter.Initialize();
+        betCellPresenter.Initialize();
+
+        chipGameVisualPresenter.Initialize();
+
+        stateMachine.Initialize();
     }
 
     private void ActivateEvents()
@@ -100,6 +119,11 @@ public class GameEntryPoint_Roulette : MonoBehaviour
         rouletteBallPresenter?.Dispose();
 
         pseudoChipPresenter?.Dispose();
+
+        chipGameVisualPresenter?.Dispose();
+
+        betPresenter?.Dispose();
+        betCellPresenter?.Dispose();
     }
 
     private void OnDestroy()

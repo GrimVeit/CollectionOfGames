@@ -91,7 +91,7 @@ public class GameSceneEntryPoint_Euro : MonoBehaviour
         storeChipPresenter = new StoreChipPresenter(new StoreChipModel(chipGroup));
         chipGameCountVisualPresenter = new ChipGameCountVisualPresenter(new ChipGameCountVisualModel(storeChipPresenter), viewContainer.GetView<ChipGameCountVisualView>());
         pseudoChipPresenter = new PseudoChipPresenter(new PseudoChipModel(soundPresenter), viewContainer.GetView<PseudoChipView>());
-        betPresenter = new BetPresenter(new BetModel(chipGroup, storeChipPresenter, bets, new List<IRouletteValueProvider>() { roulettePresenter }, bankPresenter, metric_BetNumberPresenter, metric_WinCountPresenter, notificationPresenter, soundPresenter, scoreRecordPresenter), viewContainer.GetView<BetView>());
+        //betPresenter = new BetPresenter(new BetModel(chipGroup, storeChipPresenter, bets, new List<IRouletteValueProvider>() { roulettePresenter }, bankPresenter, metric_BetNumberPresenter, metric_WinCountPresenter, notificationPresenter, soundPresenter, scoreRecordPresenter), viewContainer.GetView<BetView>());
         betCellPresenter = new BetCellPresenter(new BetCellModel(betPresenter), viewContainer.GetView<BetCellView>());
         chipGameVisualPresenter = new ChipGameVisualPresenter(new ChipGameVisualModel(betPresenter), viewContainer.GetView<ChipGameVisualView>());
 

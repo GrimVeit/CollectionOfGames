@@ -40,6 +40,8 @@ public class ChipGameVisualView : View
 
     private void AddChipInMainType(int id, Chip chip, int posId, Vector3 vector)
     {
+        Debug.Log("SPAWN");
+
         var chipGamePosition = GetGamePositionById(posId);
         var transformSpawn = GetTransformById(id);
 

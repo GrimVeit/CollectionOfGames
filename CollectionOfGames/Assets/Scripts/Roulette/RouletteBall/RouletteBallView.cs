@@ -22,8 +22,6 @@ public class RouletteBallView : View, IIdentify
     [SerializeField] private float startSpeed;
     [SerializeField] private float endSpeed = 0;
 
-    [SerializeField] private Button spinButton;
-
     private float currentRadius;
     private float currentSpeed;
     private float angle;
